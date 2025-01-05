@@ -11,6 +11,8 @@
         "Vegetables Eaten": "",
         "Cups of Coffee": "",
         "Snacks Eaten": "",
-        "Screen Time (hrs)": ""
+        "Screen Time (hrs)": "",
+        "Did you exercise today?": false,
+        "Did you meditate today?": true
     }
 }

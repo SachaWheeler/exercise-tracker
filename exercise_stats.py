@@ -23,6 +23,12 @@ QUESTIONS = [
     'Screen Time (hrs)'
 ]
 
+# Boolean questions
+BOOLEAN_QUESTIONS = [
+    'Did you exercise today?',
+    'Did you meditate today?'
+]
+
 # Load existing data
 def load_data():
     if os.path.exists(DATA_FILE):
@@ -44,6 +50,7 @@ class DailyTrackerApp:
         self.data = load_data()
         self.today = datetime.now().strftime('%Y-%m-%d')
         self.entries = {}
+        self.boolean_vars = {}
 
         # Create labels and entry fields
         tk.Label(root, text=f"Daily Tracker ({self.today})", font=('Arial', 14, 'bold')).grid(row=0, column=0, columnspan=2, pady=10)
@@ -59,8 +66,15 @@ class DailyTrackerApp:
 
             self.entries[question] = entry
 
+        # Add Boolean questions
+        for idx, question in enumerate(BOOLEAN_QUESTIONS, start=len(QUESTIONS)+1):
+            var = tk.BooleanVar(value=self.data.get(self.today, {}).get(question, False))
+            chk = tk.Checkbutton(root, text=question, variable=var)
+            chk.grid(row=idx+1, column=0, columnspan=2, sticky='w', padx=10, pady=2)
+            self.boolean_vars[question] = var
+
         # Save button
-        tk.Button(root, text='Save', command=self.save_entries).grid(row=len(QUESTIONS)+1, column=0, columnspan=2, pady=10)
+        tk.Button(root, text='Save', command=self.save_entries).grid(row=len(QUESTIONS)+len(BOOLEAN_QUESTIONS)+1, column=0, columnspan=2, pady=10)
 
     def save_entries(self):
         if self.today not in self.data:
@@ -72,6 +86,9 @@ class DailyTrackerApp:
                 self.data[self.today][question] = int(value)
             else:
                 self.data[self.today][question] = value
+
+        for question, var in self.boolean_vars.items():
+            self.data[self.today][question] = var.get()
 
         save_data(self.data)
         messagebox.showinfo('Saved', 'Your data has been saved successfully!')

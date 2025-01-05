@@ -1,18 +1,16 @@
 {
     "2025-01-05": {
-        "Exercise Reps": 10,
-        "Steps Walked": 5,
-        "Lunch Calories": "",
-        "Beers Drunk": 4,
-        "Glasses of Water": "",
-        "Hours Slept": 7,
-        "Minutes Meditated": 1,
-        "Fruits Eaten": "",
-        "Vegetables Eaten": 4,
-        "Cups of Coffee": 1,
-        "Snacks Eaten": 2,
-        "Screen Time (hrs)": 45,
-        "Did you exercise today?": false,
-        "Did you meditate today?": true
+        "Sit ups": 10,
+        "Push ups": "",
+        "Curls": "",
+        "Vertical press": "",
+        "Bench press": "",
+        "Steps walked": "",
+        "Beers Drunk": 1,
+        "Hours Slept": "",
+        "Cups of Coffee": 2,
+        "Breakfast?": true,
+        "Lunch?": false,
+        "Supper?": false
     }
 }

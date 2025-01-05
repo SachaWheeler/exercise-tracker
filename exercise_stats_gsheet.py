@@ -16,24 +16,24 @@ CREDENTIALS_FILE = 'credentials.json'
 
 # Default questions
 QUESTIONS = [
-    'Exercise Reps',
-    'Steps Walked',
-    'Lunch Calories',
+    'Sit ups',
+    'Push ups',
+    'Curls',
+    'Vertical press',
+    'Bench press',
+
+    'Steps walked',
+
     'Beers Drunk',
-    'Glasses of Water',
     'Hours Slept',
-    'Minutes Meditated',
-    'Fruits Eaten',
-    'Vegetables Eaten',
     'Cups of Coffee',
-    'Snacks Eaten',
-    'Screen Time (hrs)'
 ]
 
 # Boolean questions
 BOOLEAN_QUESTIONS = [
-    'Did you exercise today?',
-    'Did you meditate today?'
+    'Breakfast?',
+    'Lunch?',
+    'Supper?'
 ]
 
 # Load existing data

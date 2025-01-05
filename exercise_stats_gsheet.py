@@ -3,9 +3,16 @@ from tkinter import messagebox
 import json
 import os
 from datetime import datetime
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # File to store data
 DATA_FILE = 'daily_tracker.json'
+
+# Google Sheets setup
+SHEET_NAME = 'Daily Tracker Sheet'
+SCOPES = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+CREDENTIALS_FILE = 'credentials.json'
 
 # Default questions
 QUESTIONS = [
@@ -41,6 +48,28 @@ def save_data(data):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=4)
 
+# Save data to Google Sheets
+def save_to_google_sheets(data):
+    creds = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE, SCOPES)
+    client = gspread.authorize(creds)
+
+    # sheet = client.open(SHEET_NAME).sheet1
+    SPREADSHEET_ID = '1V2-KhGYl9B84UFNnBv3--Pf9P1lOOf_sPsgdinT2ic0'
+    sheet = client.open_by_key(SPREADSHEET_ID).sheet1
+
+
+    today = datetime.now().strftime('%Y-%m-%d')
+    existing_records = sheet.get_all_records()
+    dates = [record.get('Date') for record in existing_records]
+
+    row_data = [today] + [data.get(today, {}).get(q, '') for q in QUESTIONS + BOOLEAN_QUESTIONS]
+
+    if today in dates:
+        row_index = dates.index(today) + 2
+        sheet.update(f'A{row_index}', [row_data])
+    else:
+        sheet.append_row(row_data)
+
 # Main GUI Application
 class DailyTrackerApp:
     def __init__(self, root):
@@ -48,7 +77,7 @@ class DailyTrackerApp:
         self.root.title("Daily Tracker")
 
         self.data = load_data()
-        self.today = datetime.now().strftime('%A - %Y-%m-%d')
+        self.today = datetime.now().strftime('%Y-%m-%d')
         self.entries = {}
         self.boolean_vars = {}
 
@@ -91,6 +120,7 @@ class DailyTrackerApp:
             self.data[self.today][question] = var.get()
 
         save_data(self.data)
+        save_to_google_sheets(self.data)
         messagebox.showinfo('Saved', 'Your data has been saved successfully!')
 
 # Run the Application

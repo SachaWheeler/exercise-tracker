@@ -66,7 +66,8 @@ def save_to_google_sheets(data):
 
     if today in dates:
         row_index = dates.index(today) + 2
-        sheet.update(f'A{row_index}', [row_data])
+        # sheet.update(f'A{row_index}', [row_data])
+        sheet.update([row_data], f'A{row_index}')
     else:
         sheet.append_row(row_data)
 

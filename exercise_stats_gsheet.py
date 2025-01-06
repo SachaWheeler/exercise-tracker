@@ -79,11 +79,12 @@ class DailyTrackerApp:
 
         self.data = load_data()
         self.today = datetime.now().strftime('%Y-%m-%d')
+        day = datetime.now().strftime('%A')
         self.entries = {}
         self.boolean_vars = {}
 
         # Create labels and entry fields
-        tk.Label(root, text=f"Daily Tracker ({self.today})", font=('Arial', 14, 'bold')).grid(row=0, column=0, columnspan=2, pady=10)
+        tk.Label(root, text=f"Daily Tracker {day} ({self.today})", font=('Arial', 14, 'bold')).grid(row=0, column=0, columnspan=2, pady=10)
 
         for idx, question in enumerate(QUESTIONS):
             tk.Label(root, text=question).grid(row=idx+1, column=0, sticky='w', padx=10, pady=2)
@@ -104,7 +105,7 @@ class DailyTrackerApp:
             self.boolean_vars[question] = var
 
         # Save button
-        tk.Button(root, text='Save', command=self.save_entries).grid(row=len(QUESTIONS)+len(BOOLEAN_QUESTIONS)+1, column=0, columnspan=2, pady=10)
+        tk.Button(root, text='Save', command=self.save_entries).grid(row=len(QUESTIONS)+len(BOOLEAN_QUESTIONS)+2, column=0, columnspan=2, pady=10)
 
     def save_entries(self):
         if self.today not in self.data:

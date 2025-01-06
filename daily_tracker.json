@@ -1,15 +1,29 @@
 {
     "2025-01-05": {
-        "Sit ups": 10,
+        "Sit ups": 30,
         "Push ups": "",
-        "Curls": 4,
-        "Vertical press": "",
-        "Bench press": "",
-        "Steps walked": 50,
-        "Beers Drunk": 2,
+        "Curls": 30,
+        "Vertical press": 20,
+        "Bench press": 20,
+        "Steps walked": 3,
+        "Beers Drunk": 10,
         "Hours Slept": 8,
         "Cups of Coffee": 2,
         "Breakfast?": true,
+        "Lunch?": false,
+        "Supper?": false
+    },
+    "2025-01-06": {
+        "Sit ups": "",
+        "Push ups": "",
+        "Curls": "",
+        "Vertical press": "",
+        "Bench press": "",
+        "Steps walked": "",
+        "Beers Drunk": "",
+        "Hours Slept": 8,
+        "Cups of Coffee": 1,
+        "Breakfast?": false,
         "Lunch?": false,
         "Supper?": false
     }

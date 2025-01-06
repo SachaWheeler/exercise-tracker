@@ -20,10 +20,10 @@
         "Vertical press": "",
         "Bench press": "",
         "Steps walked": "",
-        "Beers Drunk": "",
+        "Beers Drunk": 3,
         "Hours Slept": 8,
         "Cups of Coffee": 3,
-        "Breakfast?": false,
+        "Breakfast?": true,
         "Lunch?": false,
         "Supper?": false
     }

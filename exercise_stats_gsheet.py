@@ -84,7 +84,10 @@ class DailyTrackerApp:
         self.boolean_vars = {}
 
         # Create labels and entry fields
-        tk.Label(root, text=f"Daily Tracker {day} ({self.today})", font=('Arial', 14, 'bold')).grid(row=0, column=0, columnspan=2, pady=10)
+        tk.Label(root,
+                text=f"Daily Tracker\n{day} ({self.today})",
+                font=('Arial', 14, 'bold')
+            ).grid(row=0, column=0, columnspan=2, pady=10)
 
         for idx, question in enumerate(QUESTIONS):
             tk.Label(root, text=question).grid(row=idx+1, column=0, sticky='w', padx=10, pady=2)
